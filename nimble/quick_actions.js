@@ -46,6 +46,9 @@ function sendNimbleRequest(data){
 
 function setLeadStatus(status){
     switch(status){
+        case "prequalified":
+            value="Prequalified";
+            break;
         case "sourcing":
             value="Sourcing";
             break;
@@ -100,12 +103,15 @@ $.getScript('https://rawgit.com/jeresig/jquery.hotkeys/master/jquery.hotkeys.js'
 
     // Lead status
     $(document).bind('keydown', 'alt+1', function(){
-        setLeadStatus('sourcing');
+        setLeadStatus('prequalified');
     });
     $(document).bind('keydown', 'alt+2', function(){
-        setLeadStatus('qualified');
+        setLeadStatus('sourcing');
     });
     $(document).bind('keydown', 'alt+3', function(){
+        setLeadStatus('qualified');
+    });
+    $(document).bind('keydown', 'alt+4', function(){
         setLeadStatus('engaged');
     });
     $(document).bind('keydown', 'alt+0', function(){
@@ -143,9 +149,10 @@ quickActions += "            <\/div>";
 quickActions += "            <div class=\"nmbl-Nimblet-Content\">";
 quickActions += "                <div class=\"ContactSocialNetworksView\">";
 quickActions += "                    <a class=\"viewStreams\" href=\"#\" aria-hidden=\"true\" style=\"display: none;\">View streams<\/a>";
-quickActions += "                    <a href=\"javascript:setLeadStatus('sourcing');\">Sourcing (alt+1)<\/a><br\/>";
-quickActions += "                    <a href=\"javascript:setLeadStatus('qualified');\">Qualified (alt+2)<\/a><br\/>";
-quickActions += "                    <a href=\"javascript:setLeadStatus('engaged');\">Engaged (alt+3)<\/a><br\/>";
+quickActions += "                    <a href=\"javascript:setLeadStatus('sourcing');\">Prequalified (alt+1)<\/a><br\/>";
+quickActions += "                    <a href=\"javascript:setLeadStatus('sourcing');\">Sourcing (alt+2)<\/a><br\/>";
+quickActions += "                    <a href=\"javascript:setLeadStatus('qualified');\">Qualified (alt+3)<\/a><br\/>";
+quickActions += "                    <a href=\"javascript:setLeadStatus('engaged');\">Engaged (alt+4)<\/a><br\/>";
 quickActions += "                    <a href=\"javascript:setLeadStatus('not_qualified');\">Not Qualified (alt+0)<\/a><br\/>";
 quickActions += "                    <hr\/>";
 quickActions += "                    <a href=\"javascript:setNotQualifiedReason('tooBig');\">Too Big<\/a><br\/>";
