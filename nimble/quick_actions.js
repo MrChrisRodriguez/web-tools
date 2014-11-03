@@ -21,8 +21,8 @@ function getDefaults(){
         "Authorization": "Nimble token=\"5f733185-6a2b-4ee4-9fe8-f06279020520\"",
         "X-Nimble-Company": "Burstworks%2C%20Inc.",
         "X-Nimble-Company-Id": companyID,
-        "X-Nimble-User": "chris@burstworks.com",
-        "X-Nimble-User-Id": "5441854efaed2949f81d2124"
+//        "X-Nimble-User": "chris@burstworks.com",
+//        "X-Nimble-User-Id": "5441854efaed2949f81d2124"
     };
 }
 var success = function(){console.log('success!')}
@@ -169,4 +169,5 @@ window.onhashchange = function(){
     getDefaults();
     console.log(companyID);
     setTimeout(function(){taskField.blur();},500);
+    setTimeout(function(){taskField.blur();},1000);
 }
