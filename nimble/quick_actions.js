@@ -149,7 +149,7 @@ quickActions += "            <\/div>";
 quickActions += "            <div class=\"nmbl-Nimblet-Content\">";
 quickActions += "                <div class=\"ContactSocialNetworksView\">";
 quickActions += "                    <a class=\"viewStreams\" href=\"#\" aria-hidden=\"true\" style=\"display: none;\">View streams<\/a>";
-quickActions += "                    <a href=\"javascript:setLeadStatus('sourcing');\">Prequalified (alt+1)<\/a><br\/>";
+quickActions += "                    <a href=\"javascript:setLeadStatus('prequalified');\">Prequalified (alt+1)<\/a><br\/>";
 quickActions += "                    <a href=\"javascript:setLeadStatus('sourcing');\">Sourcing (alt+2)<\/a><br\/>";
 quickActions += "                    <a href=\"javascript:setLeadStatus('qualified');\">Qualified (alt+3)<\/a><br\/>";
 quickActions += "                    <a href=\"javascript:setLeadStatus('engaged');\">Engaged (alt+4)<\/a><br\/>";
