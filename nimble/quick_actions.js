@@ -9,6 +9,7 @@ var sidePanel = $("#rpanel > div > div > div.lastChild > table > tbody");
 var prevButton= $("#cpanel > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > div.profileHeader > div > table > tbody > tr > td:nth-child(1) > div");
 var nextButton = $("#cpanel > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > div.profileHeader > div > table > tbody > tr > td:nth-child(4) > div");
 var contactDefault = $("#contact_default");
+var taskField = $("#cpanel > div > div > div > div > table > tbody > tr.inlineFormsCell > td > div > div.formContainer > div > div.nmbl-FormTextBox.subject.nmbl-FormTextBox-tipped > input")
 var contactDetails = $("#details");
 var companyID;
 var headers;
@@ -167,4 +168,5 @@ sidePanel.prepend(quickActions)
 window.onhashchange = function(){
     getDefaults();
     console.log(companyID);
+    setTimeout(function(){taskField.blur();},500);
 }
