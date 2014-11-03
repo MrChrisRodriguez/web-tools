@@ -19,7 +19,7 @@ function getDefaults(){
     headers = {
         "Authorization": "Nimble token=\"5f733185-6a2b-4ee4-9fe8-f06279020520\"",
         "X-Nimble-Company": "Burstworks%2C%20Inc.",
-        "X-Nimble-Company-Id": company_id,
+        "X-Nimble-Company-Id": companyID,
         "X-Nimble-User": "chris@burstworks.com",
         "X-Nimble-User-Id": "5441854efaed2949f81d2124"
     };
@@ -34,7 +34,7 @@ var error = function(){alert('Failure!')};
 // Nimble Requests
 function sendNimbleRequest(data){
     var request = $.ajax({
-        url: "https://app.nimble.com/api/v1/contact/" + company_id + "?_method=put",
+        url: "https://app.nimble.com/api/v1/contact/" + companyID + "?_method=put",
         type: "PUT",
         data: data,
         headers: headers,
