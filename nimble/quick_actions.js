@@ -95,9 +95,11 @@ function blurTaskField(){
 
 function taskEnabled(is_enabled){
     if(is_enabled){
-        taskField.unbind('focus', blurTaskField)
+        console.log('unbinding');
+        taskField.unbind('focus', blurTaskField);
     } else{
-        taskField.focus(blurTaskField)
+        console.log('binding');
+        taskField.focus(blurTaskField);
     }
 }
 
@@ -188,7 +190,7 @@ quickActions += "<\/tr>";
 sidePanel.prepend(quickActions)
 
 // Add the listener to the taskfield checkbox
-$('#taskFieldEnabledCB').click(function(){console.log(taskEnabled); taskEnabled(this.checked);});
+$('#taskFieldEnabledCB').click(function(){taskEnabled(this.checked);});
 
 // Reset defaults on page change
 window.onhashchange = function(){
