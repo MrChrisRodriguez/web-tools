@@ -9,8 +9,9 @@ var sidePanel = $("#rpanel > div > div > div.lastChild > table > tbody");
 var prevButton= $("#cpanel > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > div.profileHeader > div > table > tbody > tr > td:nth-child(1) > div");
 var nextButton = $("#cpanel > div > div > div > div > table > tbody > tr:nth-child(1) > td > div > div.profileHeader > div > table > tbody > tr > td:nth-child(4) > div");
 var contactDefault = $("#contact_default");
-var taskField = $("#cpanel > div > div > div > div > table > tbody > tr.inlineFormsCell > td > div > div.formContainer > div > div.nmbl-FormTextBox.subject.nmbl-FormTextBox-tipped > input")
+var taskField = $("#cpanel > div > div > div > div > table > tbody > tr.inlineFormsCell > td > div > div.formContainer > div > div.nmbl-FormTextBox.subject.nmbl-FormTextBox-tipped > input");
 var contactDetails = $("#details");
+var taskField = $("#cpanel > div > div > div > div > table > tbody > tr.inlineFormsCell > td > div > div.formContainer > div > div.nmbl-FormTextBox.subject.nmbl-FormTextBox-tipped > input");
 var companyID;
 var headers;
 
@@ -85,6 +86,22 @@ function setNotQualifiedReason(reason){
     sendNimbleRequest(data);
 }
 
+
+// Blur the taskfield automatically to allow shortcuts
+
+function blurTaskField(){
+    taskField.blur();
+}
+
+function taskEnabled(is_enabled){
+    if(is_enabled){
+        taskField.unbind('focus', blurTaskField)
+    } else{
+        taskField.focus(blurTaskField)
+    }
+}
+
+
 //////////////
 // Estbalish Shortcuts
 //////////////
@@ -142,39 +159,39 @@ var quickActions="";
 quickActions += "<tr>";
 quickActions += "    <td align=\"left\" style=\"vertical-align: top;\">";
 quickActions += "        <div class=\"nmbl-Nimblet\">";
-quickActions += "            <div class=\"nmbl-Nimblet-Header\">";
-quickActions += "                <span class=\"nmbl-Nimblet-Header-Title\">Quick Actions<\/span>";
-quickActions += "                <span class=\"gwt-InlineLabel clear\"><\/span>";
-quickActions += "            <\/div>";
+quickActions += "            <div class=\"nmbl-Nimblet-Header\"><span class=\"nmbl-Nimblet-Header-Title\">Quick Actions<\/span> <span";
+quickActions += "                    class=\"gwt-InlineLabel clear\"><\/span><\/div>";
 quickActions += "            <div class=\"nmbl-Nimblet-Content\">";
-quickActions += "                <div class=\"ContactSocialNetworksView\">";
-quickActions += "                    <a class=\"viewStreams\" href=\"#\" aria-hidden=\"true\" style=\"display: none;\">View streams<\/a>";
-quickActions += "                    <a href=\"javascript:setLeadStatus('prequalified');\">Prequalified (alt+1)<\/a><br\/>";
-quickActions += "                    <a href=\"javascript:setLeadStatus('sourcing');\">Sourcing (alt+2)<\/a><br\/>";
-quickActions += "                    <a href=\"javascript:setLeadStatus('qualified');\">Qualified (alt+3)<\/a><br\/>";
-quickActions += "                    <a href=\"javascript:setLeadStatus('engaged');\">Engaged (alt+4)<\/a><br\/>";
-quickActions += "                    <a href=\"javascript:setLeadStatus('not_qualified');\">Not Qualified (alt+0)<\/a><br\/>";
+quickActions += "                <div class=\"ContactSocialNetworksView\"><a class=\"viewStreams\" href=\"#\" aria-hidden=\"true\"";
+quickActions += "                                                          style=\"display: none;\">View streams<\/a> <a";
+quickActions += "                        href=\"javascript:setLeadStatus('prequalified');\">Prequalified (alt+1)<\/a><br\/> <a";
+quickActions += "                        href=\"javascript:setLeadStatus('sourcing');\">Sourcing (alt+2)<\/a><br\/> <a";
+quickActions += "                        href=\"javascript:setLeadStatus('qualified');\">Qualified (alt+3)<\/a><br\/> <a";
+quickActions += "                        href=\"javascript:setLeadStatus('engaged');\">Engaged (alt+4)<\/a><br\/> <a";
+quickActions += "                        href=\"javascript:setLeadStatus('not_qualified');\">Not Qualified (alt+0)<\/a><br\/>";
 quickActions += "                    <hr\/>";
-quickActions += "                    <a href=\"javascript:setNotQualifiedReason('tooBig');\">Too Big<\/a><br\/>";
-quickActions += "                    <a href=\"javascript:setNotQualifiedReason('badRev');\">Bad Revenue Fit<\/a><br\/>";
-quickActions += "                    <a href=\"javascript:setNotQualifiedReason('badCulture');\">Bad Culture Fit<\/a><br\/>";
-quickActions += "                    <a href=\"javascript:setNotQualifiedReason('noContact');\">Insufficient Contact Information<\/a><br\/>";
+quickActions += "                    <a href=\"javascript:setNotQualifiedReason('tooBig');\">Too Big<\/a><br\/> <a";
+quickActions += "                            href=\"javascript:setNotQualifiedReason('badRev');\">Bad Revenue Fit<\/a><br\/> <a";
+quickActions += "                            href=\"javascript:setNotQualifiedReason('badCulture');\">Bad Culture Fit<\/a><br\/> <a";
+quickActions += "                            href=\"javascript:setNotQualifiedReason('noContact');\">Insufficient Contact";
+quickActions += "                        Information<\/a><br\/>";
 quickActions += "                    <hr\/>";
-quickActions += "                    Previous (alt+left) <br\/>";
-quickActions += "                    Next (alt+right) <br\/>";
-quickActions += "                <\/div>";
+quickActions += "                    Previous (alt+left) <br\/> Next (alt+right) <br\/><\/div>";
+quickActions += "                    <hr\/>";
+quickActions += "                    <input id=\"taskFieldEnabledCB\" type=\"checkbox\" checked=\"true\"\/> Taskfield Enabled";
 quickActions += "            <\/div>";
 quickActions += "        <\/div>";
 quickActions += "    <\/td>";
 quickActions += "<\/tr>";
-quickActions += "";
+
 
 sidePanel.prepend(quickActions)
+
+// Add the listener to the taskfield checkbox
+$('#taskFieldEnabledCB').click(function(){console.log(taskEnabled); taskEnabled(this.checked);});
 
 // Reset defaults on page change
 window.onhashchange = function(){
     getDefaults();
     console.log(companyID);
-    setTimeout(function(){taskField.blur();},500);
-    setTimeout(function(){taskField.blur();},1000);
 }
